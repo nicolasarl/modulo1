@@ -36,7 +36,7 @@ int main(int argc, char* argv[]){
 // decidir el curso de acción y detectar posibles errores
 
   if (argc == 1){
-    std::cerr <<"Se ha olvidado de introducir el nombre del fichero" 
+    std::cout <<"Se ha olvidado de introducir el nombre del fichero" 
         << std::endl;
     exit(EXIT_FAILURE);
   }else if(argc == 2){
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
     }
     fent.close();
   }catch(std::ifstream::failure e1){ // Gestión de errores básica
-    std::cerr << "Error al abrir/leer/cerrar el fichero" << std::endl;
+    std::cout << "Error al abrir/leer/cerrar el fichero" << std::endl;
     exit(EXIT_FAILURE);
   }
 // Ahora ejecutamos la función que compara el vector de datos con el pivote
