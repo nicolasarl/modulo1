@@ -7,15 +7,15 @@
 #include <fstream> // Necesaria para la lectura de un fichero std::ifstream
 
 // Esta funcion devuelve los elementos de un vector que son 
-// mayores que el pivote.
+// mayores que el pivote y su posicion es par.
 std::vector<int> elementosMayores(const std::vector<int>& datos, int pivote){
   
   std::vector<int> mayores;
   for(std::size_t i = 0; i < datos.size(); i++){
     std::cerr <<"Considerando el dato " << datos[i] << std::endl;
-    if(datos[i] > pivote){
-	  std::cerr <<"El dato " << datos[i] << " es mayor que el pivote"
-          << std::endl;
+    if(datos[i] > pivote && ((i+1)%2) == 0){
+	  std::cerr <<"El dato " << datos[i] << " es mayor que el pivote "
+          << "y se encuentra en una posicion par"<< std::endl;
       mayores.push_back(datos[i]);
     }
   }
@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
     std::cerr << "El argumento " << i << " contiene '" << argv[i] << "'"
         << std::endl;
   }
-  int pivote = 2; // valor predeterminado del pivote
+  int pivote = 5; // valor predeterminado del pivote
   
 // Realizamos una comprobación de los argumentos del programa para
 // decidir el curso de acción y detectar posibles errores
