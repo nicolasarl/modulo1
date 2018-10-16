@@ -15,18 +15,18 @@ int clasificacionNumeros(const std::vector<int>& datos, std::vector<int>& mayore
   for(std::size_t i = 0; i < datos.size(); i++){
     std::cerr <<"Considerando el dato " << datos[i] << std::endl;
     if(datos[i] > pivote){
-	  std::cerr <<"El dato " << datos[i] << " es mayor que el pivote"
+      std::cerr <<"El dato " << datos[i] << " es mayor que el pivote"
           << std::endl;
       mayores.push_back(datos[i]);
     }else if(datos[i] < pivote){
-	  std::cerr <<"El dato " << datos[i] << " es menor que el pivote"
+      std::cerr <<"El dato " << datos[i] << " es menor que el pivote"
           << std::endl;
       menores.push_back(datos[i]);  
     }else{
-	  std::cerr <<"El dato " << datos[i] << " es igual que el pivote"
+      std::cerr <<"El dato " << datos[i] << " es igual que el pivote"
           << std::endl;
-	  iguales++;
-	}
+      iguales++;
+    }
   }
   return iguales;
 }
@@ -51,55 +51,57 @@ int main(int argc, char* argv[]){
   }else if(argc == 2){
     std::cerr <<"El nombre del fichero es: " << argv[1] << std::endl;
   }else{
-	std::cerr << "Se han introducido todos los parámetros" << std::endl;
-	std::cerr << "El pivote vale: " << argv[2] << std::endl;
-	try{// Para obtener el valor del pivote debemos convertir de str a int
-	  pivote = std::stoi(argv[2]);
-	// Usamos la documentacion de std::stoi para el manejo de errores
-	}catch(std::invalid_argument e1){
-	  std::cout << "Se ha producido un error en la conversión del pivote"
-	      << std::endl;
-	  exit(EXIT_FAILURE);
-	}catch(std::out_of_range e2){
-	  std::cout << "El entero introducido es demasiado grande" << std::endl;
-	  exit(EXIT_FAILURE);
-	}catch(std::exception e){
-	  std::cout <<"Se ha producido un error desconocido" << std::endl;
-	  exit(EXIT_FAILURE);
-	}
+    std::cerr << "Se han introducido todos los parámetros" << std::endl;
+    std::cerr << "El pivote vale: " << argv[2] << std::endl;
+    try{// Para obtener el valor del pivote debemos convertir de str a int
+      pivote = std::stoi(argv[2]);
+    // Usamos la documentacion de std::stoi para el manejo de errores
+    }catch(std::invalid_argument e1){
+      std::cout << "Se ha producido un error en la conversión del pivote"
+          << std::endl;
+      exit(EXIT_FAILURE);
+    }catch(std::out_of_range e2){
+      std::cout << "El entero introducido es demasiado grande" << std::endl;
+      exit(EXIT_FAILURE);
+    }
   }
-// Ahora ejecutamos el código relacionado con la lectura del fichero
+  // Ahora ejecutamos el código relacionado con la lectura del fichero
 
   int linea; // entero temporal para almacenar las lineas del fichero
   std::vector<int> datos;
-  try{// Abrimos, leemos y cerramos el fichero
-	std::string nombre;
-	nombre = argv[1];
-	std::cerr << "El nombre almacenado es: " << nombre << std::endl;
-	
-	// Analizamos la extensión para determinar si debemos incluirla
-	// o el usuario ya la introdujo junto al nombre
-	std::string extension = nombre.substr((nombre.size()-4), nombre.size());
-	std::cerr << "Extensión: " << extension << std::endl;
-	if(extension != ".dat"){
-	  nombre = nombre + ".dat";
-    }
-    std::cerr << "El nombre modificado es: " << nombre << std::endl;
-    
-    std::ifstream fent(nombre);
-    int i = 0;
-    while(fent.good()){
-      fent >> linea;
-      datos.push_back(linea);
-      std::cerr << "El contenido del vector en la posicion " << i << " es "
-          << datos[i] << std::endl;
-      i++;
-    }
-    fent.close();
-  }catch(std::ifstream::failure e1){ // Gestión de errores básica
-    std::cout << "Error al abrir/leer/cerrar el fichero" << std::endl;
-    exit(EXIT_FAILURE);
+  // Abrimos, leemos y cerramos el fichero
+  std::string nombre;
+  nombre = argv[1];
+  std::cerr << "El nombre almacenado es: " << nombre << std::endl;
+  
+  // Analizamos la extensión para determinar si debemos incluirla
+  // o el usuario ya la introdujo junto al nombre
+  std::string extension = nombre.substr((nombre.size()-4), nombre.size());
+  std::cerr << "Extensión: " << extension << std::endl;
+  if(extension != ".dat"){
+    nombre = nombre + ".dat";
   }
+  std::cerr << "El nombre modificado es: " << nombre << std::endl;
+  
+  std::ifstream fent(nombre);
+  if(!fent.good()){
+    std::cout << "Ha habido un error en la apertura del fichero" 
+      << std::endl;
+    return 1;
+  }
+  int i = 0;
+  while(fent.good()){
+    fent >> linea;
+    if(fent.eof()){
+      break;
+    }
+    datos.push_back(linea);
+    std::cerr << "El contenido del vector en la posicion " << i << " es "
+        << datos[i] << std::endl;
+    i++;
+  }
+  fent.close();
+
 // Ahora ejecutamos la función que compara el vector de datos con el pivote
 // y mostramos los resultados al usuario
   std::vector<int> mayores, menores;
@@ -109,12 +111,10 @@ int main(int argc, char* argv[]){
   for(std::size_t i = 0; i < mayores.size(); i++){
     std::cout << mayores[i] << std::endl;
   }
-  std::cout << std::endl;
   std::cout << "Menores: "<< std::endl;
   for(std::size_t i = 0; i < menores.size(); i++){
     std::cout << menores[i] << std::endl;
   }
-  std::cout << std::endl;
   std::cout << "Iguales: " << iguales << std::endl;
 }
 	

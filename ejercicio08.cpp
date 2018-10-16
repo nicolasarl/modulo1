@@ -10,8 +10,8 @@ int bitsUno(int numero){
   // Comprobamos que el numero sea positivo, ya que el algoritmo no está
   // diseñado para número negativos
   if(numero < 0){
-	std::cout << "Este programa no puede tratar con numeros negativos"
-	    << std::endl;
+    std::cout << "Este programa no puede tratar con numeros negativos"
+        << std::endl;
     exit(EXIT_FAILURE);
   }
   //Convertimos el número a binario
@@ -23,11 +23,11 @@ int bitsUno(int numero){
     std::cerr << "Cuando el dividendo es: " << dividendo << "el resto es: "
       << resto << std::endl;
     if(resto){
-	  cuantosUno++;
-	  std::cerr << "La cuenta se actualiza a: " << cuantosUno << std::endl;
-	}
-	dividendo = dividendo/2;
-	std::cerr << "El nuevo dividendo es: " << dividendo << std::endl;
+      cuantosUno++;
+      std::cerr << "La cuenta se actualiza a: " << cuantosUno << std::endl;
+    }
+    dividendo = dividendo/2;
+    std::cerr << "El nuevo dividendo es: " << dividendo << std::endl;
   }
   if(dividendo != 0){
     cuantosUno++;
@@ -35,94 +35,85 @@ int bitsUno(int numero){
   return cuantosUno;
 }
 
+std::string hexadecimal(int dividendo){
+  std::string numeroHexadecimal = "";
+  if(dividendo == 0){
+    numeroHexadecimal = "0";
+  }
+  int resto = 1;
+  while(1){
+    resto = (dividendo%16);
+    switch(resto){
+      case 10:
+        numeroHexadecimal = 'a' + numeroHexadecimal;
+        break;
+      case 11:
+        numeroHexadecimal = 'b' + numeroHexadecimal;
+        break;
+      case 12:
+        numeroHexadecimal = 'c' + numeroHexadecimal;
+        break;
+      case 13:
+        numeroHexadecimal = 'd' + numeroHexadecimal;
+        break;
+      case 14:
+        numeroHexadecimal = 'e' + numeroHexadecimal;
+        break;
+      case 15:
+        numeroHexadecimal = 'f' + numeroHexadecimal;
+        break;
+      default:
+        if(resto != 0){
+          numeroHexadecimal = std::to_string(resto) + numeroHexadecimal;
+        }else if((resto == 0) && (dividendo >= 16)){
+          numeroHexadecimal = std::to_string(resto) + numeroHexadecimal;
+        }
+        break;
+    }
+    if(dividendo < 16){
+      break;
+    }
+    dividendo /= 16;
+  }
+  return numeroHexadecimal;
+}
+
 int main(int argc, char* argv[]){
 
   while(1){
-    int numeroIntroducido = 0;
-    std::cout << "Introduzca un numero entero: ";
+    std::string numeroIntroducido = "";
     std::cin >> numeroIntroducido;
-    if(numeroIntroducido == 0){
-	  std::cerr << "Salida indicada por el usuario" << std::endl;
-	  exit(EXIT_SUCCESS);
-	}
     std::cerr << "El numero introducido es: " << numeroIntroducido 
         << std::endl;
     // obtenemos el numero de bits de su representacion en binario que 
     //estan a 1
-    int numeroBitsUno = bitsUno(numeroIntroducido);
+    int numeroIntr = 0;
+    try{
+      numeroIntr = std::stoi(numeroIntroducido);
+    }catch(std::invalid_argument e1){
+      std::cerr << "Error de conversión, tipo no admitido" << std::endl;
+      exit(EXIT_FAILURE);
+    }catch(std::out_of_range e2){
+      std::cerr << "Número demasiado grande" << std::endl;
+      exit(EXIT_FAILURE);
+    }
+    
+    int numeroBitsUno = bitsUno(numeroIntr);
   
     //Calculamos su representación en hexadecimal
-  
-    int dividendo = numeroIntroducido;
-    int resto = 0;
-    std::string numeroHexadecimal = "";
-  
-    while(dividendo >= 16){
-      resto = dividendo%16;
-      std::cerr << "El resto es: " << resto << std::endl;
-      switch(resto){
-	    case 10:
-	      numeroHexadecimal = 'A' + numeroHexadecimal;
-	      break;
-	    case 11:
-	      numeroHexadecimal = 'B' + numeroHexadecimal;
-	      break;
-	    case 12:
-	      numeroHexadecimal = 'C' + numeroHexadecimal;
-	      break;
-	    case 13:
-	      numeroHexadecimal = 'D' + numeroHexadecimal;
-	      break;
-	    case 14:
-	      numeroHexadecimal = 'E' + numeroHexadecimal;
-	      break;
-	    case 15:
-	      numeroHexadecimal = 'F' + numeroHexadecimal;
-	      break;
-	    default:
-	      numeroHexadecimal = std::to_string(resto) + numeroHexadecimal;
-	      break;
-      }
-      std::cerr << "El numero en hexadecimal actual es: " << numeroHexadecimal
-           << std::endl;
-      dividendo = dividendo/16;
-      std::cerr << "El nuevo dividendo es: " << dividendo << std::endl;
 
-    }
-    if(dividendo != 0){
-	  std::cerr << "El dividendo final es: " << dividendo << std::endl;
-      switch(dividendo){
-	    case 10:
-	      numeroHexadecimal = 'A' + numeroHexadecimal;
-	      break;
-	    case 11:
-	      numeroHexadecimal = 'B' + numeroHexadecimal;
-	      break;
-	    case 12:
-	      numeroHexadecimal = 'C' + numeroHexadecimal;
-	      break;
-	    case 13:
-	      numeroHexadecimal = 'D' + numeroHexadecimal;
-	      break;
-	    case 14:
-	      numeroHexadecimal = 'E' + numeroHexadecimal;
-	      break;
-	    case 15:
-	      numeroHexadecimal = 'F' + numeroHexadecimal;
-	      break;
-	    default:
-	      numeroHexadecimal = std::to_string(dividendo) + numeroHexadecimal;
-	      break;
-      }
-    }
-    // Terminamos de formatear el numero en base hexadecimal
+    std::string numeroHexadecimal = hexadecimal(numeroIntr);
     numeroHexadecimal = "0x" + numeroHexadecimal;
+    
     std::cerr << "El numero en hexadecimal queda como: " << numeroHexadecimal
         << std::endl;
     //Mostramos los resultados al usuario
   
     std::cout << numeroBitsUno << " " << numeroHexadecimal << std::endl;
-    std::cout << "Si desea salir del programa introduzca un 0" 
-        << std::endl;
+
+    if(numeroIntr == 0){
+      std::cerr << "Salida indicada por el usuario" << std::endl;
+      exit(EXIT_SUCCESS);
+    }
   }
 }
