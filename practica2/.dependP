@@ -1,0 +1,8 @@
+prueba14.o: prueba14.cpp Vector.hpp Punto.hpp
+prueba13.o: prueba13.cpp Vector.hpp Punto.hpp
+prueba01.o: prueba01.cpp Punto.hpp
+prueba11.o: prueba11.cpp Vector.hpp Punto.hpp
+prueba02.o: prueba02.cpp Punto.hpp
+prueba12.o: prueba12.cpp Vector.hpp Punto.hpp
+prueba03.o: prueba03.cpp Punto.hpp
+prueba15.o: prueba15.cpp Vector.hpp Punto.hpp

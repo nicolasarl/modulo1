@@ -1,0 +1,2 @@
+Punto.o: Punto.cpp Punto.hpp
+Vector.o: Vector.cpp Vector.hpp Punto.hpp

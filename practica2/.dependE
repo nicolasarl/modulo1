@@ -1,0 +1,8 @@
+prueba14: prueba14.o Vector.o Punto.o
+prueba13: prueba13.o Vector.o Punto.o
+prueba01: prueba01.o Punto.o
+prueba11: prueba11.o Vector.o Punto.o
+prueba02: prueba02.o Punto.o
+prueba12: prueba12.o Vector.o Punto.o
+prueba03: prueba03.o Punto.o
+prueba15: prueba15.o Vector.o Punto.o
