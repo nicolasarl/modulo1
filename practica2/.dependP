@@ -1,8 +1,15 @@
+prueba32.o: prueba32.cpp Curva.hpp Vector.hpp Punto.hpp
 prueba14.o: prueba14.cpp Vector.hpp Punto.hpp
+prueba22.o: prueba22.cpp Curva.hpp Vector.hpp Punto.hpp
 prueba13.o: prueba13.cpp Vector.hpp Punto.hpp
-prueba01.o: prueba01.cpp Punto.hpp
+prueba31.o: prueba31.cpp Curva.hpp Vector.hpp Punto.hpp
+prueba25.o: prueba25.cpp Curva.hpp Vector.hpp Punto.hpp
 prueba11.o: prueba11.cpp Vector.hpp Punto.hpp
-prueba02.o: prueba02.cpp Punto.hpp
+prueba01.o: prueba01.cpp Punto.hpp
+prueba21.o: prueba21.cpp Curva.hpp Vector.hpp Punto.hpp
+prueba24.o: prueba24.cpp Curva.hpp Vector.hpp Punto.hpp
+prueba23.o: prueba23.cpp Curva.hpp Vector.hpp Punto.hpp
 prueba12.o: prueba12.cpp Vector.hpp Punto.hpp
-prueba03.o: prueba03.cpp Punto.hpp
+prueba02.o: prueba02.cpp Punto.hpp
 prueba15.o: prueba15.cpp Vector.hpp Punto.hpp
+prueba03.o: prueba03.cpp Punto.hpp

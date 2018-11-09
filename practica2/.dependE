@@ -1,8 +1,15 @@
+prueba32: prueba32.o Curva.o Vector.o Punto.o
 prueba14: prueba14.o Vector.o Punto.o
+prueba22: prueba22.o Curva.o Vector.o Punto.o
 prueba13: prueba13.o Vector.o Punto.o
-prueba01: prueba01.o Punto.o
+prueba31: prueba31.o Curva.o Vector.o Punto.o
+prueba25: prueba25.o Curva.o Vector.o Punto.o
 prueba11: prueba11.o Vector.o Punto.o
-prueba02: prueba02.o Punto.o
+prueba01: prueba01.o Punto.o
+prueba21: prueba21.o Curva.o Vector.o Punto.o
+prueba24: prueba24.o Curva.o Vector.o Punto.o
+prueba23: prueba23.o Curva.o Vector.o Punto.o
 prueba12: prueba12.o Vector.o Punto.o
-prueba03: prueba03.o Punto.o
+prueba02: prueba02.o Punto.o
 prueba15: prueba15.o Vector.o Punto.o
+prueba03: prueba03.o Punto.o

@@ -1,2 +1,3 @@
+Curva.o: Curva.cpp Curva.hpp Vector.hpp Punto.hpp
 Punto.o: Punto.cpp Punto.hpp
 Vector.o: Vector.cpp Vector.hpp Punto.hpp

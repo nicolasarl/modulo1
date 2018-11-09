@@ -24,8 +24,7 @@ std::string Punto::toString() const{
   return oss.str();
 }
 std::ostream& operator<<(std::ostream &os,const Punto &p){
-    os << "p(" << std::fixed << std::setprecision(1) << p.getX() 
-        << ", " << p.getY() << ")";
+    os << p.toString();
     return os;
 }
 
